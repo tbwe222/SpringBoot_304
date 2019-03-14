@@ -35,6 +35,11 @@ public class HomeController {
         courseRepository.save(course);
         return "redirect:/";
     }
+    @RequestMapping("/detail/{id}")
+    public String showCourse(@PathVariable("id") long id, Model model){
+        model.addAttribute("course", courseRepository.findById(id).get());
+        return "show";
+    }
     @RequestMapping("/update/{id}")
     public String updateCourse(@PathVariable("id") long id, Model model){
         model.addAttribute("course", courseRepository.findById(id).get());
